@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+    
+<head>   
+<title>Dissertation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+    <style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  
+  background-color: #cccccc;
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+    .container {
+      position: relative;
+      left: 26%;
+      width: 700px;
+      height: 50px;
+    }
+        
+</style>
+    
+
+<!-- Bar Chart -->
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart3D);
+
+var options={title: { 
+    text: "My Chart Title"
+       }}
+    
+// Add data
+chart.data = [{
+  "opinion": "Very disinterested",
+  "percentages": 17.1
+}, {
+  "opinion": "Somewhat disinterested",
+  "percentages": 9.8
+}, {
+  "opinion": "Neutral",
+  "percentages": 19.5
+}, {
+  "opinion": "Somewhat interested",
+  "percentages": 19.5
+}, {
+  "opinion": "Very interested",
+  "percentages": 34.1
+} ];
+
+// Create axes
+let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "opinion";
+categoryAxis.renderer.labels.template.rotation = 30;
+categoryAxis.renderer.labels.template.hideOversized = false;
+categoryAxis.renderer.minGridDistance = 20;
+categoryAxis.renderer.labels.template.horizontalCenter = "centre";
+categoryAxis.renderer.labels.template.verticalCenter = "middle";
+categoryAxis.tooltip.label.rotation = 270;
+categoryAxis.tooltip.label.horizontalCenter = "right";
+categoryAxis.tooltip.label.verticalCenter = "middle";
+
+let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.title.text = "Percentages";
+valueAxis.title.fontWeight = "bold";
+
+// Create series
+var series = chart.series.push(new am4charts.ColumnSeries3D());
+series.dataFields.valueY = "percentages";
+series.dataFields.categoryX = "opinion";
+series.name = "Percentages";
+series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+series.columns.template.fillOpacity = .8;
+
+var columnTemplate = series.columns.template;
+columnTemplate.strokeWidth = 2;
+columnTemplate.strokeOpacity = 1;
+columnTemplate.stroke = am4core.color("#FFFFFF");
+
+columnTemplate.adapter.add("fill", function(fill, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+})
+
+columnTemplate.adapter.add("stroke", function(stroke, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+})
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineX.strokeOpacity = 0;
+chart.cursor.lineY.strokeOpacity = 0;
+
+}); // end am4core.ready()
+</script>
+    
+<style>
+#chartdiv {
+  width: 100%;
+  height: 600px;
+}
+</style>
+    
+<style>
+#piechart {
+  width: 100%;
+  height: 300px;
+}
+</style>
+
+<!-- Pie Chart -->
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("piechart", am4charts.PieChart);
+
+// Add data
+chart.data = [ {
+  "opinions": "Yes",
+  "percentages": 7
+}, {
+  "opinions": "No",
+  "percentages": 31
+}, {
+  "opinions": "Not Sure",
+  "percentages": 3
+}
+];
+
+// Add and configure Series
+var pieSeries = chart.series.push(new am4charts.PieSeries());
+pieSeries.dataFields.value = "percentages";
+pieSeries.dataFields.category = "opinions";
+pieSeries.slices.template.stroke = am4core.color("#fff");
+pieSeries.slices.template.strokeOpacity = 1;
+
+// This creates initial animation
+pieSeries.hiddenState.properties.opacity = 1;
+pieSeries.hiddenState.properties.endAngle = -90;
+pieSeries.hiddenState.properties.startAngle = -90;
+
+chart.hiddenState.properties.radius = am4core.percent(0);
+
+
+}); // end am4core.ready()
+</script>    
+    
+  </head>  
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+    <div class=" w3-row w3-padding w3-black" style=" display: grid; grid-auto-flow: column;">
+
+    <div>
+      <a href="#introduction" class="w3-button w3-block w3-black">Introduction</a>
+    </div>
+
+    <div>
+      <a href="#aims" class="w3-button w3-block w3-black">Aims</a>
+    </div>
+
+    <div>
+      <a href="#methodology" class="w3-button w3-block w3-black">Methodology</a>
+    </div>
+
+    <div>
+      <a href="#results" class="w3-button w3-block w3-black">Results</a>
+    </div>
+    <div>
+      <a href="#conclusion" class="w3-button w3-block w3-black">Conclusion</a>
+    </div>
+
+  </div>
+  </div>
+    
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Simona Petkova</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-black" style="font-size:30px">The Role of Computer Science in Combating Climate Change:<br>An exploratory study of students’ attitude towards incorporating climate change topics in Computer Science university education</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-tag">University of Aberdeen, May 2021</span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container" id="introduction">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Introduction</span></h5>
+    <p>The evidence of climate change is all around us and its dire consequences cannot be ignored anymore, however, Computer Science can play a vital role in combating these challenges as it can not only in deliver tools for greater understanding of climate science but also reduce the environmental costs of computing [5]. Studies show that Information and Communications Technology (ICT) can enable a 20% reduction of global CO2 emissions by 2030. It is argued that all levels of education need to prepare students how to deal with these challenges during their careers [3] and there is an increasing but unmet need for science educators to develop such technologies in the fight with climate change [1]. However, the scale of action required to address it is inadequate [4] and research on sustainability computing is scarce within CS education research [5] and especially on students’ opinion on the matter. In order to respond to the gaps recognised in the literature review and to investigate students’ attitude on incorporating climate change topics in the Computer Science curriculum, this study entertains the idea of a revised Computer Science university curriculum; one that integrates significant sustainability and climate change issues at different levels and stages of the offered computing programmes.</p>
+  </div>
+</div>
+
+<!-- Aims Container -->
+<div class="w3-container" id="aims">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Aims</span></h5>
+    <p> <ul>
+      <li>Provide an insight into the connection between Computer Science education and climate change and highlight the impact and importance of using computing education to mitigate the causes and prevent a climate disaster.</li>
+      <li>Provide an exploratory study of students’ awareness of climate change issues and investigate to what extent they have been exposed to such knowledge through their time before and during university and how their country of origin has helped shape their views.</li>
+      <li>Provide an exploratory study of students’ opinions on incorporating sustainable and climate change topics in Computer Science curriculums at university level.</li>
+      <li>Provide a suggestion on how to most effectively introduce and adapt climate change education to the current Computer Science curriculum in a way that is engaging to the students by incorporating topics which are requested by the students themselves.</li></ul></p>
+  </div>
+</div>
+
+<!-- Methodology Container -->
+<div class="w3-container" id="methodology">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Methodology</span></h5>
+    <p>With the intention of gauging the level of student interest and gaining an understanding of the potential effects of changes in curriculum, a literature review was conducted, and students enrolled at University of Aberdeen’s Computer Science degrees during the academic year prior to an altered curriculum were surveyed. The quantitative approach in the form of an online survey with 32 questions was complemented by a qualitative approach in the form of introducing open-ended questions to further analyse the data which offers an effective way of examining the data more in-depth. Questions were derived from common themes in the literature works and previously used techniques. The analysis of the survey results was conducted via explanatory sequential design [2] which involves first establishing a set of quantitative results, and then using the qualitative data to help clarify and understand those results. The results of the open-ended questions were analysed using thematic analysis.</p>
+  </div>
+</div>
+    
+    
+<!-- Results Container -->
+<div class="w3-container" id="results">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Results</span></h5>
+    <p> <ul>
+      <li>The survey was completed by 41 University of Aberdeen Computer Science Students from 11 different countries, the majority of which are completing Single Honours Computing Science Degrees. Supporting the evidence found in the literature review, the majority of the surveyed students have a good awareness of climate change issues and believe climate change poses a very real threat but have not been taught climate change topics throughout their education so far (Fig. 1 & 2). Results from the survey also correspond to the findings from the literature review in terms of perceived misconceptions related to the causes of climate change and personal carbon footprint from PC usage. The study also found that their home countries have had a major impact on how students perceive climate change.</li>
+      <li>A few students are not fully aware of the scale of a climate change disaster can have, do not think sustainability in computing is relevant to their degrees or believe that adding more topics would mean missing out on other important aspects of the degree. However, students realise their limited understanding of the issue and are interested in learning more through a carefully designed sustainability-based Computer Science curriculum (Fig. 3).</li>
+      <li>The survey found that students are more interested in a sustainability issues included in an optional subject rather than a whole separate degree which led to the suggestion of introducing courses for introductory and upper-level levels.</li>
+      <li>The courses could involve green computing topics such as: energy efficiency of ICT, reducing carbon footprint of computing, how to implement sustainability in ICT, recycling and reducing e-waste, etc., and include practical exercises in order to stimulate engagement and learning.</li></ul></p>
+  </div>
+</div>
+
+    
+    <div id="piechart"></div>
+    <p class="container">Fig. 1 - Students' responses on whether climate change has appeared as a subject/topic in their Computer Science courses and teaching programs DURING their education at university.</p>
+    
+<!-- Conclusion Container -->
+<div class="w3-container" id="conclusion">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Conclusion</span></h5>
+    <p>Taken together, the results of this study’s literature review and survey show what a positive impact climate science education can have on students in combating climate change; and indicate that there is a lot of evidence supporting the idea of adopting such a sustainability revised curriculum. Students believe introducing sustainable computing to the curriculum would entail a lot of advantages for them such as enhanced employability. The presence of a couple of misconceptions related to personal carbon footprint and the causes of climate change need to be considered as well when designing the curriculum. A suggestion on how to adopt such a curriculum was proposed by introducing an introductory and upper-level course based around green computing and climate informatics. The proposed topics to be included in those courses were determined by the relevant literature work and students’ interests. Future work could further explore in greater detail how these courses should be designed based on both teachers’ and students’ feedback. The insights gained from this study am to be of assistance to on how to best adapt the computer science university curriculum in a way that is both interesting to students and equipping them with the required skills to deal with the global challenges posed by climate change.</p>
+  </div>
+</div>
+    
+    <div id="chartdiv"></div>
+
+    <p class="container">Fig. 2 - Percentage of students who are interested in learning more about climate change during their Computer Science university education.</p>
+    
+    
+<!-- References Container -->
+<div class="w3-container" id="results">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">References</span></h5>
+    <p> <ol>
+      <li>Hamilton, J.G., Rogers, M., Pfaff, T.J. and Erkan, A., 2010. Multidisciplinary collaborations in the traditional classroom: Wrestling with global climate change to improve science education. Transformations: The Journal of Inclusive Scholarship and Pedagogy, 21(1), pp.89-98.</li>
+      <li>Ivankova, N.V., Creswell, J.W. and Stick, S.L., 2006. Using mixed-methods sequential explanatory design: From theory to practice. Field methods, 18(1), pp.3-20.</li>
+      <li>Leifler, O., 2016. Using Climate Research to Introduce Sustainability in a Computer Science Curriculum. Pedagogiska inspirationskonferensen-Genombrottet.</li>
+      <li>Leiserowitz, A., Smith, N. and Marlon, J.R., 2011. American teens’ knowledge of climate change. Yale University. New Haven, CT: Yale Project on Climate Change Communication, 5.</li>
+      <li>Pollock, I., Alshaigy, B., Bradley, A., Krogstie, B.R., Kumar, V., Ott, L., Peters, A.K., Riedesel, C. and Wallace, C., 2019. 5 Degrees of Separation: Computer Science Education in the Age of the
+Anthropocene. In Proceedings of the Working Group Reports on Innovation and Technology in Computer Science Education (pp. 1-25).</li>
+      </ol></p>
+  </div>
+</div>
+
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+    
+</script>
+
+</body>
+</html>
+
